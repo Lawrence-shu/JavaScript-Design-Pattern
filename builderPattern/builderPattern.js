@@ -5,7 +5,6 @@ class Builder {
   
   buildPart1() {
       this.part1 = 'part1'
-      
   }
   
   buildPart2() {
@@ -21,5 +20,6 @@ class Director {
       return builder
   }
 }
+
 // 获得产品实例
 const product = new Director('param')
