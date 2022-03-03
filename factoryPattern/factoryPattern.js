@@ -10,7 +10,7 @@ class Product2 {
 }
 
 class Factory {
-  static getInstance(type) {
+  static createProduct(type) {
     switch(type) {
       case 'Product1':
         return new Product1()
@@ -22,6 +22,6 @@ class Factory {
   }
 }
 
-const prod_1 = Factory.getInstance('Product1')
-prod1.operate()		// 'Product1'										
-const prod_2 = Factory.getInstance('Product3') // 'Error'
+const prod_1 = Factory.createProduct('Product1')
+prod_1.operate()		// 'Product1'										
+const prod_2 = Factory.createProduct('Product3') // 'Error'
