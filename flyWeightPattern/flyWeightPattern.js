@@ -9,9 +9,9 @@ class ExamCar {
         this.usingState = true
         console.log(`考生- ${ candidateId } 开始在驾考车- ${ this.carId } 上考试`)
         setTimeout(() => {
-            this.usingState = false
-            console.log(`%c考生- ${ candidateId } 在驾考车- ${ this.carId } 上考试完毕`, 'color:#f40')
-            resolve()                       // 0~2秒后考试完毕
+          this.usingState = false
+          console.log(`%c考生- ${ candidateId } 在驾考车- ${ this.carId } 上考试完毕`, 'color:#f40')
+          resolve()                       // 0~2秒后考试完毕
         }, Math.random() * 2000)
       }))
     }

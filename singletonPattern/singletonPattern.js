@@ -1,34 +1,40 @@
-/* 功能类 */
-class FuncClass {
-  constructor(bar) { 
-    this.bar = bar
-    this.init()
+class Singleton {
+  constructor () {
+    if(!Singleton.instance) {
+      Singleton.instance = this
+    }
+    return Singleton.instance
   }
-  
-  init() {
-    this.foo = 'Function Class'
+  static getInstance() {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton()
+    }
+    return Singleton.instance
   }
 }
-/* 单例模式的赋能类 */
-const Singleton = (function() {
-  let _instance = null        // 存储单例
-  
-  const ProxySingleton = function(bar) {
-    if (_instance) return _instance     // 判断是否已有单例
-    _instance = new FuncClass(bar)
-    return _instance
+
+const a = new Singleton()
+const b = Singleton.getInstance()
+// const b = new Singleton()
+console.log('a==b', a===b)
+
+/* 功能类 */
+class Car {
+  constructor(carType) { 
+    this.carType = carType
   }
-  
-  ProxySingleton.getInstance = function(bar) {
-    if (_instance) return _instance
-    _instance = new Singleton(bar)
-    return _instance
+}
+
+class SingletonCar {
+  constructor(carType) {
+    if(!SingletonCar.instance) {
+      SingletonCar.instance = new Car(carType)
+    }
+    return SingletonCar.instance
   }
-  
-  return ProxySingleton
-})()
-const visitor1 = new Singleton('单例1')
-const visitor2 = new Singleton('单例2')
-const visitor3 = Singleton.getInstance()
-console.log(visitor1 === visitor2)	// true
-console.log(visitor1 === visitor3)	// true
+}
+
+const car_1 = new SingletonCar('car_1')
+const car_2 = new SingletonCar('car_2')
+
+console.log('car_1 === car_2', car_1 === car_2)

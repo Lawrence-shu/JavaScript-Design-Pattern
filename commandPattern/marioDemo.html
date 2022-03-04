@@ -24,6 +24,62 @@
     <button id='left-btn'>left</button>
     <button id='right-btn'>right</button>
   </div>
-  <script src="./mario.js"></script>
+  <script>
+    const container = document.getElementById('container')
+    const canvas = document.createElement('canvas')
+    canvas.setAttribute('id', 'my-canvas')
+    container.appendChild(canvas)
+    const CanvasWidth = 400    // 画布宽度
+    const CanvasHeight = 400   // 画布高度
+    const CanvasStep = 40      // 动作步长
+    canvas.width = CanvasWidth
+    canvas.height = CanvasHeight
+    const btnUp = document.getElementById('up-btn')
+    const btnDown = document.getElementById('down-btn')
+    const btnLeft = document.getElementById('left-btn')
+    const btnRight = document.getElementById('right-btn')
+  </script>
+  <script src="./commandPattern.js"></script>
+  <!-- <script>
+    // 非命令模式
+    const mario = new Role(200, 200, './assets/mario.jpg')
+
+    btnUp.onclick = function() {
+      mario.move(0, -CanvasStep)
+    }
+
+    btnDown.onclick = function() {
+      mario.move(0, CanvasStep)
+    }
+
+    btnLeft.onclick = function() {
+      mario.move(-CanvasStep, 0)
+    }
+
+    btnRight.onclick = function() {
+      mario.move(CanvasStep, 0)
+    }
+  </script> -->
+  <script>
+    /**
+     * 命令模式
+     */ 
+
+    // 执行者
+    const mario = new Role(200, 200, './assets/mario.jpg')
+
+    // 命令
+    const moveUpCommand = new MoveUpCommand(mario)
+    const moveDownCommand = new MoveDownCommand(mario)
+    const moveLeftCommand = new MoveLeftCommand(mario)
+    const moveRightCommand = new MoveRightCommand(mario)
+
+    // 按钮是命令的发布者
+    setCommand(btnUp, moveUpCommand)
+    setCommand(btnDown, moveDownCommand)
+    setCommand(btnLeft, moveLeftCommand)
+    setCommand(btnRight, moveRightCommand)
+    setCommand(btnUp, moveRightCommand)
+  </script>
 </body>
 </html>
